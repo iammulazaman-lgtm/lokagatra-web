@@ -8,255 +8,310 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: #e0e0e0; margin: 0; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.5s ease; }
-        .glass:hover { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .modal-overlay { background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); }
-        .gradient-text { background: linear-gradient(to right, #ffffff, #666666); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn-disabled { opacity: 0.2; cursor: not-allowed; filter: grayscale(1); }
-        #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; top: 0; left: 0; pointer-events: none; }
-        .content-wrapper { position: relative; z-index: 10; }
-        ::-webkit-scrollbar { width: 3px; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0d0d0d; color: #e0e0e0; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .modal-overlay { background: rgba(0, 0, 0, 0.9); }
+        .gradient-text { background: linear-gradient(to right, #e0e0e0, #a0a0a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(1); }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #a0a0a0; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <div id="particles-js"></div>
-
-    <audio id="bgMusic" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-relaxing.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="content-wrapper">
-        <header class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
-            <h1 class="text-7xl md:text-9xl font-extrabold gradient-text mb-4 tracking-tighter">LOKAGATRA</h1>
-            <p class="text-xl md:text-2xl text-stone-500 font-light max-w-2xl italic mb-12 uppercase tracking-[0.3em]">Prasanti Adikala</p>
-            <div class="max-w-xl text-stone-400 text-sm leading-relaxed mb-12 font-light">
-                Museum Nalar untuk melawan arus konsumerisme instan. Ruang memuliakan proses kepemilikan melalui pemahaman sanad.
-            </div>
-            <a href="https://medium.com/@iammulazaman" target="_blank" class="flex items-center gap-2 text-stone-400 hover:text-white transition-all text-xs tracking-[0.4em] border border-white/10 px-8 py-4 rounded-full uppercase">
-                <i data-lucide="book-open" class="w-4 h-4"></i> Jelajah Nalar
-            </a>
-        </header>
-
-        <section class="py-24 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="glass p-10 rounded-3xl flex flex-col justify-between h-[450px]">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="text-[10px] tracking-[0.4em] text-stone-600 uppercase font-bold">Pilar 01 / Batas</span>
-                        <i data-lucide="compass" class="text-stone-700 w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4 tracking-tight text-white">NOMADEN GEAR</h3>
-                    <p class="text-stone-500 text-sm leading-relaxed italic">"Ketahanan di titik terjauh. Menembus dinding prasangka di kepala sendiri."</p>
-                </div>
-                <div class="space-y-3">
-                    <button onclick="openBedah(1)" class="w-full py-4 border border-white/5 rounded-xl hover:bg-white/5 transition-all text-[10px] tracking-[0.2em] uppercase font-bold text-stone-400">Bedah Aksara & Sanad</button>
-                    <button id="btn-akad-1" onclick="openAkad(1)" class="w-full py-4 glass rounded-xl btn-disabled text-[10px] tracking-[0.3em] font-bold uppercase" disabled>Mulai Akad</button>
-                </div>
-            </div>
-
-            <div class="glass p-10 rounded-3xl flex flex-col justify-between h-[450px]">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="text-[10px] tracking-[0.4em] text-stone-600 uppercase font-bold">Pilar 02 / Riset</span>
-                        <i data-lucide="pencil-line" class="text-stone-700 w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4 tracking-tight text-white">NARASI PENGEMBARA</h3>
-                    <p class="text-stone-500 text-sm leading-relaxed italic">"Menanam legasi melalui tulisan. Menjahit dunia nyata dengan magis bawah sadar."</p>
-                </div>
-                <div class="space-y-3">
-                    <button onclick="openBedah(2)" class="w-full py-4 border border-white/5 rounded-xl hover:bg-white/5 transition-all text-[10px] tracking-[0.2em] uppercase font-bold text-stone-400">Bedah Aksara & Sanad</button>
-                    <button id="btn-akad-2" onclick="openAkad(2)" class="w-full py-4 glass rounded-xl btn-disabled text-[10px] tracking-[0.3em] font-bold uppercase" disabled>Mulai Akad</button>
-                </div>
-            </div>
-
-            <div class="glass p-10 rounded-3xl flex flex-col justify-between h-[450px]">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="text-[10px] tracking-[0.4em] text-stone-600 uppercase font-bold">Pilar 03 / Jeda</span>
-                        <i data-lucide="wind" class="text-stone-700 w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4 tracking-tight text-white">SELASAR HENING</h3>
-                    <p class="text-stone-500 text-sm leading-relaxed italic">"Ketenangan radikal. Ruang kebebasan untuk memilih sikap di tengah penderitaan."</p>
-                </div>
-                <div class="space-y-3">
-                    <button onclick="openBedah(3)" class="w-full py-4 border border-white/5 rounded-xl hover:bg-white/5 transition-all text-[10px] tracking-[0.2em] uppercase font-bold text-stone-400">Bedah Aksara & Sanad</button>
-                    <button id="btn-akad-3" onclick="openAkad(3)" class="w-full py-4 glass rounded-xl btn-disabled text-[10px] tracking-[0.3em] font-bold uppercase" disabled>Mulai Akad</button>
-                </div>
-            </div>
-
-            <div class="glass p-10 rounded-3xl flex flex-col justify-between h-[450px]">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="text-[10px] tracking-[0.4em] text-stone-600 uppercase font-bold">Pilar 04 / Fokus</span>
-                        <i data-lucide="focus" class="text-stone-700 w-5 h-5"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4 tracking-tight text-white">NAVIGASI FOKUS</h3>
-                    <p class="text-stone-500 text-sm leading-relaxed italic">"Kehadiran utuh. Merebut kembali kedaulatan waktu dari jeratan algoritma."</p>
-                </div>
-                <div class="space-y-3">
-                    <button onclick="openBedah(4)" class="w-full py-4 border border-white/5 rounded-xl hover:bg-white/5 transition-all text-[10px] tracking-[0.2em] uppercase font-bold text-stone-400">Bedah Aksara & Sanad</button>
-                    <button id="btn-akad-4" onclick="openAkad(4)" class="w-full py-4 glass rounded-xl btn-disabled text-[10px] tracking-[0.3em] font-bold uppercase" disabled>Mulai Akad</button>
-                </div>
-            </div>
-        </section>
-
-        <footer class="py-24 px-6 border-t border-white/5 relative overflow-hidden">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-stone-500/50 to-transparent"></div>
-            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
-                <div class="text-left">
-                    <h4 class="text-[10px] tracking-[0.3em] text-stone-600 uppercase mb-6 font-bold">Pondasi Nalar</h4>
-                    <ul class="space-y-3 text-stone-400 text-sm italic font-light">
-                        <li>Slilit Sang Kiai</li>
-                        <li>Arus Balik</li>
-                        <li>Esai Nalar Nusantara</li>
-                    </ul>
-                </div>
-                <div class="text-left md:text-right space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-stone-800 bg-white/5">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-stone-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-stone-500"></span>
-                        </span>
-                        <span class="text-[10px] text-stone-500 uppercase tracking-widest font-medium uppercase">Laboratorium Aktif</span>
-                    </div>
-                    <div class="pt-6 border-t border-white/5">
-                        <span class="text-xs tracking-[0.2em] text-stone-300 font-bold uppercase">Kurator: Hilmi Mulazaman</span>
-                        <span class="block text-[9px] text-stone-600 uppercase mt-1 tracking-widest italic">© 2026 Lokagatra — Prasanti Adikala</span>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <div id="modal-bedah" class="fixed inset-0 modal-overlay z-[100] hidden overflow-y-auto">
-        <div class="min-h-screen p-6 flex items-center justify-center">
-            <div class="glass max-w-2xl w-full p-10 rounded-3xl relative">
-                <button onclick="closeBedah()" class="absolute top-6 right-6 text-stone-500"><i data-lucide="x"></i></button>
-                <div id="bedah-content" class="space-y-8"></div>
-            </div>
+    <header class="min-h-screen flex flex-col justify-center items-center px-6 text-center border-b border-white/5">
+        <h1 class="text-6xl md:text-8xl font-extrabold gradient-text mb-4 tracking-tighter">LOKAGATRA</h1>
+        <p class="text-xl md:text-2xl text-stone-400 font-light max-w-2xl italic italic mb-8">"Prasanti Adikala — Ketenangan di Atas Waktu"</p>
+        <div class="max-w-xl text-stone-500 text-sm leading-relaxed mb-12">
+            Museum Nalar untuk melawan arus konsumerisme instan. Lokagatra bukan tempat bertukar benda, 
+            tapi ruang memuliakan proses kepemilikan melalui pemahaman sanad.
         </div>
-    </div>
+        <a href="https://medium.com/@iammulazaman" target="_blank" class="flex items-center gap-2 text-stone-400 hover:text-white transition-all text-sm tracking-widest border border-white/10 px-6 py-3 rounded-full">
+            <i data-lucide="book-open" class="w-4 h-4"></i> JELAJAH NALAR DI MEDIUM
+        </a>
+    </header>
 
-    <div id="modal-akad" class="fixed inset-0 modal-overlay z-[100] hidden">
-        <div class="min-h-screen p-6 flex items-center justify-center">
-            <div class="glass max-w-md w-full p-10 rounded-3xl">
-                <h3 class="text-xl font-bold mb-8 text-center uppercase tracking-[0.3em]">Dialog Kesadaran</h3>
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold mb-16 text-center tracking-widest text-stone-500 uppercase">Ekshibisi Empat Pilar</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div class="glass p-8 rounded-2xl flex flex-col justify-between" id="pilar-1">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs tracking-widest text-stone-500 uppercase">Pilar 01</span>
+                        <i data-lucide="compass" class="text-stone-500"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2">BATAS</h3>
+                    <p class="text-stone-400 text-sm mb-6 uppercase tracking-widest italic">(Nomaden Gear)</p>
+                    <p class="text-stone-500 mb-8 leading-relaxed italic">"Ketahanan di titik terjauh."</p>
+                </div>
                 <div class="space-y-4">
-                    <input type="text" id="input-nama" placeholder="Nama Penanggung Nalar" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none text-sm">
-                    <textarea id="input-alamat" placeholder="Titik Labuh (Alamat)" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none text-sm h-24"></textarea>
-                    <input type="text" id="input-niat" placeholder="Kegelisahan Batin (Niat)" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none text-sm">
-                    <div id="akad-options" class="grid grid-cols-2 gap-4 pt-4"></div>
-                    <button onclick="closeAkad()" class="w-full text-stone-600 text-[10px] mt-4 uppercase tracking-widest">Batalkan</button>
+                    <button onclick="openBedah(1)" class="w-full py-4 border border-white/10 rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-3">
+                        <i data-lucide="scroll-text" class="w-5 h-5"></i> Bedah Aksara & Sanad
+                    </button>
+                    <button id="btn-akad-1" onclick="openAkad(1)" class="w-full py-4 glass rounded-xl btn-disabled font-bold tracking-widest" disabled>
+                        MULAI AKAD
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-2xl flex flex-col justify-between" id="pilar-2">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs tracking-widest text-stone-500 uppercase">Pilar 02</span>
+                        <i data-lucide="pencil-line" class="text-stone-500"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2">RISET</h3>
+                    <p class="text-stone-400 text-sm mb-6 uppercase tracking-widest italic">(Narasi Pengembara)</p>
+                    <p class="text-stone-500 mb-8 leading-relaxed italic">"Menanam legasi melalui tulisan."</p>
+                </div>
+                <div class="space-y-4">
+                    <button onclick="openBedah(2)" class="w-full py-4 border border-white/10 rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-3">
+                        <i data-lucide="scroll-text" class="w-5 h-5"></i> Bedah Aksara & Sanad
+                    </button>
+                    <button id="btn-akad-2" onclick="openAkad(2)" class="w-full py-4 glass rounded-xl btn-disabled font-bold tracking-widest" disabled>
+                        MULAI AKAD
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-2xl flex flex-col justify-between" id="pilar-3">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs tracking-widest text-stone-500 uppercase">Pilar 03</span>
+                        <i data-lucide="wind" class="text-stone-500"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2">JEDA</h3>
+                    <p class="text-stone-400 text-sm mb-6 uppercase tracking-widest italic">(Selasar Hening)</p>
+                    <p class="text-stone-500 mb-8 leading-relaxed italic">"Ketenangan radikal."</p>
+                </div>
+                <div class="space-y-4">
+                    <button onclick="openBedah(3)" class="w-full py-4 border border-white/10 rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-3">
+                        <i data-lucide="scroll-text" class="w-5 h-5"></i> Bedah Aksara & Sanad
+                    </button>
+                    <button id="btn-akad-3" onclick="openAkad(3)" class="w-full py-4 glass rounded-xl btn-disabled font-bold tracking-widest" disabled>
+                        MULAI AKAD
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-2xl flex flex-col justify-between" id="pilar-4">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="text-xs tracking-widest text-stone-500 uppercase">Pilar 04</span>
+                        <i data-lucide="focus" class="text-stone-500"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2">FOKUS</h3>
+                    <p class="text-stone-400 text-sm mb-6 uppercase tracking-widest italic">(Navigasi Fokus)</p>
+                    <p class="text-stone-500 mb-8 leading-relaxed italic">"Kehadiran utuh."</p>
+                </div>
+                <div class="space-y-4">
+                    <button onclick="openBedah(4)" class="w-full py-4 border border-white/10 rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-3">
+                        <i data-lucide="scroll-text" class="w-5 h-5"></i> Bedah Aksara & Sanad
+                    </button>
+                    <button id="btn-akad-4" onclick="openAkad(4)" class="w-full py-4 glass rounded-xl btn-disabled font-bold tracking-widest" disabled>
+                        MULAI AKAD
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="modal-bedah" class="fixed inset-0 modal-overlay z-50 hidden overflow-y-auto">
+        <div class="min-h-screen p-6 flex items-center justify-center">
+            <div class="glass max-w-3xl w-full p-8 rounded-3xl relative">
+                <button onclick="closeBedah()" class="absolute top-6 right-6 text-stone-500 hover:text-white">
+                    <i data-lucide="x"></i>
+                </button>
+                <div id="bedah-content" class="space-y-8">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-akad" class="fixed inset-0 modal-overlay z-50 hidden">
+        <div class="min-h-screen p-6 flex items-center justify-center">
+            <div class="glass max-w-lg w-full p-8 rounded-3xl">
+                <h3 class="text-2xl font-bold mb-6 text-center uppercase tracking-widest">Dialog Kesadaran</h3>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs text-stone-500 uppercase tracking-widest mb-2">Identitas</label>
+                        <input type="text" id="input-nama" placeholder="Siapa namamu?" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:border-stone-400 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-stone-500 uppercase tracking-widest mb-2">Labuh (Alamat)</label>
+                        <textarea id="input-alamat" placeholder="Ke mana jasad hantaran dikirim?" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:border-stone-400 transition-all h-24"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-stone-500 uppercase tracking-widest mb-2">Ruh (Niat)</label>
+                        <input type="text" id="input-niat" placeholder="Apa kegelisahan batinmu?" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none focus:border-stone-400 transition-all">
+                    </div>
+                    <div id="akad-options" class="grid grid-cols-2 gap-4">
+                        </div>
+                    <button onclick="closeAkad()" class="w-full text-stone-500 text-sm mt-4 uppercase tracking-widest">Batalkan</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <button onclick="toggleMusic()" id="musicBtn" class="fixed bottom-8 left-8 z-[60] glass p-4 rounded-full text-stone-600 hover:text-white transition-all">
-        <i data-lucide="volume-x" id="musicIcon" class="w-4 h-4"></i>
-    </button>
+    <footer class="py-20 px-6 border-t border-white/5 text-center">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-stone-500 text-sm tracking-widest mb-4 uppercase">Pondasi Nalar</p>
+            <p class="text-stone-400 font-light mb-12 italic">Slilit Sang Kiai — Arus Balik — Esai Nalar Nusantara</p>
+            <div class="text-xs text-stone-600 uppercase tracking-tighter">
+                Kurator: Hilmi Mulazaman © 2026 | Ruang ini masih dikembangkan sebagai laboratorium pemikiran.
+            </div>
+        </div>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         lucide.createIcons();
-
-        // Konfigurasi Bintang (Particles)
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": true, "anim": { "enable": true, "speed": 0.5, "opacity_min": 0.1 } },
-                "size": { "value": 1.5, "random": true },
-                "line_linked": { "enable": false },
-                "move": { "enable": true, "speed": 0.2, "direction": "none", "random": true, "out_mode": "out" }
-            }
-        });
-
-        // Kontrol Musik
-        let music = document.getElementById("bgMusic");
-        let musicIcon = document.getElementById("musicIcon");
-        music.volume = 0.3;
-
-        function toggleMusic() {
-            if (music.paused) { music.play(); musicIcon.setAttribute("data-lucide", "volume-2"); }
-            else { music.pause(); musicIcon.setAttribute("data-lucide", "volume-x"); }
-            lucide.createIcons();
-        }
 
         const pilarData = {
             1: {
                 nama: "BATAS",
-                sanad: [{ p: "Agustinus Wibowo", d: "Pionir travelog filosofis Indonesia." }, { p: "Hermann Hesse", d: "Maestro Nobel perajut harmoni Barat-Timur." }],
-                resensi: [{ j: "Titik Nol", h: "124.000", i: "Menemukan rumah di titik paling asing." }, { j: "Siddhartha", h: "60.000", i: "Nalar: Berpikir, Menunggu, Berpuasa." }],
-                bonus: "PDF Peta Navigasi Batin", hA: 195000, hL: 625000
+                label: "Nomaden Gear",
+                spirit: "Ketahanan di titik terjauh.",
+                sanad: [
+                    { penulis: "Agustinus Wibowo", detail: "Pionir travelog filosofis Indonesia. Penulis yang melampaui deskripsi fisik menuju batas psikologis; perjalanan terjauh adalah menembus dinding prasangka di kepala sendiri." },
+                    { penulis: "Hermann Hesse", detail: "Maestro Nobel Sastra 1946. Perajut harmoni logika Barat dan spiritualitas Timur; pengeksplorasi dualitas cahaya dan kegelapan manusia." }
+                ],
+                resensi: [
+                    { judul: "Titik Nol", harga: "Rp124.000", isi: "Dekonstruksi jujur atas konsep 'tujuan'. Menghadapi trauma diri dan menemukan rumah di titik paling asing." },
+                    { judul: "Siddhartha", harga: "Rp60.000", isi: "Alegori pencerahan melalui tiga pusaka batin: Berpikir (Nalar), Menunggu (Sabar), dan Berpuasa (Ketahanan)." }
+                ],
+                jasad: "Daypack Naturehike 22L & Multi Tool VICTORINOX Spartan 91mm.",
+                bonus: "PDF Peta Navigasi Batin di Wilayah Asing — Panduan psikologis menjaga kewarasan batin di lingkungan asing dan mengelola ketidakpastian.",
+                hargaAksara: 195000,
+                hargaLengkap: 625000
             },
             2: {
                 nama: "RISET",
-                sanad: [{ p: "Yuval Noah Harari", d: "Pembedah mitos peradaban." }, { p: "Haruki Murakami", d: "Maestro realisme magis sensorik." }],
-                resensi: [{ j: "21 Lessons", h: "294.500", i: "Menjaga fokus di era post-truth." }, { j: "Norwegian Wood", h: "82.500", i: "Memahat duka menjadi narasi hidup." }],
-                bonus: "PDF Arsitektur Narasi", hA: 395000, hL: 1050000
+                label: "Narasi Pengembara",
+                spirit: "Menanam legasi melalui tulisan.",
+                sanad: [
+                    { penulis: "Yuval Noah Harari", detail: "Intelektual pembedah mitos global. Melihat kemanusiaan sebagai kumpulan narasi fiksi yang kita sepakati bersama untuk bertahan hidup." },
+                    { penulis: "Haruki Murakami", detail: "Maestro realisme magis. Menjahit dunia nyata dengan magis bawah sadar, mentransformasikan kedisiplinan raga menjadi ketajaman prosa." }
+                ],
+                resensi: [
+                    { judul: "21 Lessons", harga: "Rp294.500", isi: "Benteng kemanusiaan era post-truth. Menjaga fokus adalah bentuk pemberontakan tertinggi terhadap algoritma." },
+                    { judul: "Norwegian Wood", harga: "Rp82.500", isi: "Ode untuk kehilangan. Memahat duka menjadi detail sensorik yang hidup sebagai panduan penulis menangkap 'rasa'." }
+                ],
+                jasad: "Ulanzi WM-10 Wireless Mic, Powerbank Anker 10k, & Leather Myntydori Passport Journal.",
+                bonus: "PDF Arsitektur Narasi: Mengubah Data Menjadi Rasa — Panduan teknis menyusun draf riset dingin menjadi tulisan yang menyentuh emosi pembaca.",
+                hargaAksara: 395000,
+                hargaLengkap: 1050000
             },
             3: {
                 nama: "JEDA",
-                sanad: [{ p: "Viktor Frankl", d: "Penyintas Auschwitz & Guru Makna." }, { p: "Sapardi Djoko Damono", d: "Begawan sastra kesederhanaan." }],
-                resensi: [{ j: "Man’s Search for Meaning", h: "67.150", i: "Kebebasan memilih makna batin." }, { j: "Hujan Bulan Juni", h: "55.100", i: "Penyucian rasa dari polusi kata." }],
-                bonus: "PDF Protokol Logotherapy", hA: 135000, hL: 295000
+                label: "Selasar Hening",
+                spirit: "Ketenangan radikal.",
+                sanad: [
+                    { penulis: "Viktor Frankl", detail: "Psikiater & Penyintas Auschwitz. Saksi bahwa manusia yang bertahan adalah mereka yang memiliki makna batin untuk diperjuangkan." },
+                    { penulis: "Sapardi Djoko Damono", detail: "Begawan sastra Indonesia. Pemulia kesederhanaan yang menjadikan peristiwa kecil sebagai wasilah menyentuh relung batin terdalam." }
+                ],
+                resensi: [
+                    { judul: "Man’s Search for Meaning", harga: "Rp67.150", isi: "Kebebasan memilih sikap di tengah penderitaan. Nalar valid untuk menemukan titik diam di tengah kekacauan." },
+                    { judul: "Hujan Bulan Juni", harga: "Rp55.100", isi: "Puncak estetika ketabahan. Protokol mencuci batin dari polusi kata-kata dunia modern melalui puitika alam." }
+                ],
+                jasad: "Sajadah Genggam MURI Waterproof & Macks Silicone Earplugs.",
+                bonus: "PDF Protokol Logotherapy: Makna di Tengah Bising — Metode praktis mencari 'titik diam' di tengah tekanan pekerjaan dan hiruk pikuk informasi.",
+                hargaAksara: 135000,
+                hargaLengkap: 295000
             },
             4: {
                 nama: "FOKUS",
-                sanad: [{ p: "Cal Newport", d: "Pejuang kesadaran Deep Work." }, { p: "Haemin Sunim", d: "Biksu Zen penerjemah kearifan kuno." }],
-                resensi: [{ j: "Digital Minimalism", h: "118.150", i: "Merebut kedaulatan waktu." }, { j: "Slow Down", h: "106.250", i: "Menemukan surga di setiap langkah." }],
-                bonus: "PDF Manual Fokus Keluarga", hA: 245000, hL: 650000
+                label: "Navigasi Fokus",
+                spirit: "Kehadiran utuh.",
+                sanad: [
+                    { penulis: "Cal Newport", detail: "Pejuang kesadaran ekonomi perhatian. Fokus mendalam (Deep Work) adalah keahlian langka dan mata uang berharga masa depan." },
+                    { penulis: "Haemin Sunim", detail: "Biksu Zen modern. Fokus pada hubungan manusiawi dan perdamaian diri di tengah hiruk-pikuk dunia yang terburu-buru." }
+                ],
+                resensi: [
+                    { judul: "Digital Minimalism", harga: "Rp118.150", isi: "Merebut kedaulatan waktu dari algoritma agar jiwa hadir sepenuhnya bagi orang-orang tersayang dan memori nyata." },
+                    { judul: "Slow Down", harga: "Rp106.250", isi: "Dunia terasa cepat karena pikiran yang terburu-buru. Menemukan surga di setiap langkah kecil dan melihat luka yang terabaikan." }
+                ],
+                jasad: "Rosca JoraJug Tumbler 1L & Jam Tangan Casio MQ-24-1B Classic.",
+                bonus: "PDF Manual Fokus Keluarga: Kedaulatan Perhatian — Strategi mengatur ekosistem rumah tangga bebas gangguan gawai demi bonding yang utuh.",
+                hargaAksara: 245000,
+                hargaLengkap: 650000
             }
         };
 
         let currentPilar = null;
 
         function openBedah(id) {
-            currentPilar = id;
             const data = pilarData[id];
+            currentPilar = id;
             let content = `
-                <h2 class="text-3xl font-bold tracking-tighter text-white uppercase">${data.nama}</h2>
-                <div class="space-y-4">
-                    <p class="text-[10px] font-bold text-stone-600 uppercase tracking-widest border-b border-white/5 pb-2 text-center">Sanad Penulis</p>
-                    ${data.sanad.map(s => `<div><p class="text-white text-sm font-bold">${s.p}</p><p class="text-stone-500 text-xs">${s.d}</p></div>`).join('')}
+                <div class="mb-8">
+                    <h2 class="text-4xl font-bold italic mb-2">${data.nama}</h2>
+                    <p class="text-stone-500 uppercase tracking-widest text-xs">${data.label}</p>
                 </div>
-                <div class="space-y-4">
-                    <p class="text-[10px] font-bold text-stone-600 uppercase tracking-widest border-b border-white/5 pb-2 text-center text-center">Intisari Aksara</p>
-                    ${data.resensi.map(r => `<div><div class="flex justify-between font-bold text-sm text-white"><span>${r.j}</span><span>Rp${r.h}</span></div><p class="text-stone-500 text-xs">${r.i}</p></div>`).join('')}
+                <div class="space-y-6">
+                    <h4 class="text-xs uppercase tracking-widest text-stone-400 border-b border-white/10 pb-2">Sanad Penulis</h4>
+                    ${data.sanad.map(s => `<div class="mb-4"><span class="font-bold text-white block mb-1">${s.penulis}</span><p class="text-stone-500 text-sm leading-relaxed">${s.detail}</p></div>`).join('')}
                 </div>
-                <p class="text-[10px] text-stone-400 italic text-center uppercase tracking-widest">Bonus: ${data.bonus}</p>
+                <div class="space-y-6">
+                    <h4 class="text-xs uppercase tracking-widest text-stone-400 border-b border-white/10 pb-2">Intisari Aksara</h4>
+                    ${data.resensi.map(r => `<div class="mb-4"><div class="flex justify-between items-center mb-1"><span class="font-bold text-white">${r.judul}</span><span class="text-xs text-stone-500">${r.harga}</span></div><p class="text-stone-500 text-sm leading-relaxed">${r.isi}</p></div>`).join('')}
+                </div>
+                <div class="p-6 bg-white/5 rounded-2xl">
+                    <h4 class="text-xs uppercase tracking-widest text-stone-400 mb-3">Isi Jasad (Lengkap)</h4>
+                    <p class="text-stone-400 text-sm italic">${data.jasad}</p>
+                </div>
+                <div class="p-6 border border-stone-500/20 rounded-2xl">
+                    <h4 class="text-xs uppercase tracking-widest text-stone-400 mb-3 font-bold">Materi Bonus</h4>
+                    <p class="text-stone-300 text-sm leading-relaxed">${data.bonus}</p>
+                </div>
             `;
             document.getElementById('bedah-content').innerHTML = content;
             document.getElementById('modal-bedah').classList.remove('hidden');
+            
+            // Unlock Akad Button
             const btn = document.getElementById(`btn-akad-${id}`);
-            btn.classList.remove('btn-disabled'); btn.disabled = false;
+            btn.classList.remove('btn-disabled');
+            btn.classList.add('hover:bg-white', 'hover:text-black', 'transition-all');
+            btn.disabled = false;
         }
 
-        function closeBedah() { document.getElementById('modal-bedah').classList.add('hidden'); }
+        function closeBedah() {
+            document.getElementById('modal-bedah').classList.add('hidden');
+        }
 
         function openAkad(id) {
             currentPilar = id;
             const data = pilarData[id];
-            document.getElementById('akad-options').innerHTML = `
-                <button onclick="kirimWA('Aksara')" class="py-3 border border-white/10 rounded-xl text-[9px] font-bold uppercase hover:bg-white hover:text-black transition-all">Aksara Rp${data.hA.toLocaleString('id-ID')}</button>
-                <button onclick="kirimWA('Lengkap')" class="py-3 bg-white text-black rounded-xl text-[9px] font-bold uppercase hover:bg-stone-200 transition-all">Lengkap Rp${data.hL.toLocaleString('id-ID')}</button>
+            const options = `
+                <button onclick="kirimWA('Aksara')" class="py-4 border border-white/10 rounded-xl text-xs font-bold hover:bg-white/5 uppercase">Akad Aksara<br><span class="text-stone-500 font-normal">Rp${data.hargaAksara.toLocaleString('id-ID')}</span></button>
+                <button onclick="kirimWA('Lengkap')" class="py-4 glass rounded-xl text-xs font-bold hover:bg-white hover:text-black uppercase transition-all text-white">Akad Lengkap<br><span>Rp${data.hargaLengkap.toLocaleString('id-ID')}</span></button>
             `;
+            document.getElementById('akad-options').innerHTML = options;
             document.getElementById('modal-akad').classList.remove('hidden');
         }
 
-        function closeAkad() { document.getElementById('modal-akad').classList.add('hidden'); }
+        function closeAkad() {
+            document.getElementById('modal-akad').classList.add('hidden');
+        }
 
         function kirimWA(tipe) {
-            const n = document.getElementById('input-nama').value;
-            const a = document.getElementById('input-alamat').value;
-            const ni = document.getElementById('input-niat').value;
-            if(!n || !a || !ni) { alert("Dialog belum lengkap."); return; }
-            const teks = `Rahayu Kurator Lokagatra, saya ${n} bermaksud melakukan Akad ${pilarData[currentPilar].nama} (${tipe}). Niat: ${ni}. Alamat: ${a}. PDF Bonus: ${pilarData[currentPilar].bonus} — Prasanti Adikala`;
-            window.open(`https://wa.me/6288989764121?text=${encodeURIComponent(teks)}`, '_blank');
+            const nama = document.getElementById('input-nama').value;
+            const alamat = document.getElementById('input-alamat').value;
+            const niat = document.getElementById('input-niat').value;
+            const data = pilarData[currentPilar];
+            const pdfBonus = data.bonus.split('.')[0];
+
+            if(!nama || !alamat || !niat) {
+                alert("Dialog Kesadaran belum lengkap, Cak. Selesaikan Identitas, Labuh, dan Ruh.");
+                return;
+            }
+
+            const teks = `Rahayu Kurator Lokagatra, saya ${nama} bermaksud melakukan Akad ${data.nama} (${tipe}). Niat Akad: ${niat}. Alamat Labuh: ${alamat}. PDF Bonus: ${pdfBonus} — Prasanti Adikala`;
+            const phone = "6288989764121";
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(teks)}`;
+            
+            window.open(url, '_blank');
         }
     </script>
 </body>
