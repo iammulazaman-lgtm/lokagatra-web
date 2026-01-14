@@ -19,6 +19,19 @@
 </head>
 <body class="overflow-x-hidden">
 
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="fixed bottom-10 left-10 z-[100] flex items-center gap-4 group">
+        <button onclick="toggleMusic()" id="musicBtn" class="glass w-14 h-14 rounded-full flex items-center justify-center text-stone-500 hover:text-white transition-all border border-white/10 group-hover:scale-110 active:scale-95 shadow-2xl">
+            <i data-lucide="volume-x" id="musicIcon" class="w-5 h-5"></i>
+        </button>
+        <span class="text-[10px] tracking-[0.3em] text-stone-600 uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none italic">
+            Aktifkan Frekuensi Nalar
+        </span>
+    </div>
+    
     <header class="min-h-screen flex flex-col justify-center items-center px-6 text-center border-b border-white/5">
         <h1 class="text-6xl md:text-8xl font-extrabold gradient-text mb-4 tracking-tighter">LOKAGATRA</h1>
         <p class="text-xl md:text-2xl text-stone-400 font-light max-w-2xl italic italic mb-8">"Prasanti Adikala — Ketenangan di Atas Waktu"</p>
@@ -207,6 +220,44 @@
 
     <script>
         lucide.createIcons();
+
+        <script>
+        lucide.createIcons();
+
+        // TEMPEL DI SINI: Logika Musik Lokagatra
+        let music = document.getElementById("bgMusic");
+        let musicBtn = document.getElementById("musicBtn");
+        let musicIcon = document.getElementById("musicIcon");
+
+        music.volume = 0; // Mulai dari sunyi
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                // Efek Fade-In Halus
+                let fadeIn = setInterval(() => {
+                    if (music.volume < 0.25) { music.volume += 0.01; } 
+                    else { clearInterval(fadeIn); }
+                }, 100);
+
+                musicIcon.setAttribute("data-lucide", "volume-2");
+                musicBtn.classList.add("animate-pulse", "border-stone-500", "text-white");
+                musicBtn.classList.remove("text-stone-500");
+            } else {
+                // Efek Fade-Out Halus
+                let fadeOut = setInterval(() => {
+                    if (music.volume > 0.01) { music.volume -= 0.01; } 
+                    else { music.pause(); clearInterval(fadeOut); }
+                }, 50);
+
+                musicIcon.setAttribute("data-lucide", "volume-x");
+                musicBtn.classList.remove("animate-pulse", "border-stone-500", "text-white");
+                musicBtn.classList.add("text-stone-500");
+            }
+            lucide.createIcons();
+        }
+
+        const pilarData = { ... // lanjut ke data pilar Anda
 
         const pilarData = {
             1: {
