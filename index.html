@@ -101,12 +101,12 @@
                         <span class="text-xs tracking-[0.2em] text-stone-400 font-bold uppercase">Kurator: Hilmi Mulazaman</span>
                         <span class="block text-[9px] text-stone-600 uppercase mt-1 tracking-widest italic">© 2026 Lokagatra — Prasanti Adikala</span>
                     </div>
-          </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <div id="player" class="hidden"></div> 
+    <div id="player" class="hidden"></div>
     <div class="fixed bottom-10 left-10 z-[100] flex items-center gap-4 group">
         <button onclick="toggleMusic()" id="musicBtn" class="glass w-14 h-14 rounded-full flex items-center justify-center text-stone-500 hover:text-white transition-all border border-white/10 group-hover:scale-110 active:scale-95 shadow-2xl">
             <i data-lucide="volume-x" id="musicIcon" class="w-5 h-5"></i>
@@ -116,54 +116,6 @@
         </span>
     </div>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
-
-    <script>
-        lucide.createIcons();
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: 'TjviWy5xjVY',
-                playerVars: { 
-                    'autoplay': 1, 
-                    'loop': 1, 
-                    'playlist': 'TjviWy5xjVY',
-                    'mute': 1, 
-                    'controls': 0
-                },
-                events: {
-                    'onReady': function(event) { event.target.playVideo(); }
-                }
-            });
-        }
-
-        function toggleMusic() {
-            let musicBtn = document.getElementById("musicBtn");
-            let musicIcon = document.getElementById("musicIcon");
-            if (player.isMuted()) {
-                player.unMute();
-                player.setVolume(35);
-                musicIcon.setAttribute("data-lucide", "volume-2");
-                musicBtn.classList.add("animate-pulse", "text-white", "border-stone-500");
-                musicBtn.classList.remove("text-stone-500");
-            } else {
-                player.mute();
-                musicIcon.setAttribute("data-lucide", "volume-x");
-                musicBtn.classList.remove("animate-pulse", "text-white", "border-stone-500");
-                musicBtn.classList.add("text-stone-500");
-            }
-            lucide.createIcons();
-        }
-
-        // --- LANJUTKAN DENGAN PILARDATA DI SINI ---
-        const pilarData = {
-            // Data pilar yang detail sudah saya siapkan sebelumnya
-        };
-    </script>
-</body>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         // Init Lucide Icons
