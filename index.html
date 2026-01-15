@@ -204,25 +204,14 @@
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Init Lucide Icons
         lucide.createIcons();
 
-        // YouTube Audio Logic
         var player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: 'TjviWy5xjVY',
-                playerVars: { 
-                    'autoplay': 0, 
-                    'loop': 1, 
-                    'playlist': 'TjviWy5xjVY',
-                    'controls': 0
-                },
-                events: {
-                    'onReady': function(event) { event.target.setVolume(35); }
-                }
+                height: '0', width: '0', videoId: 'TjviWy5xjVY',
+                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'TjviWy5xjVY', 'controls': 0 },
+                events: { 'onReady': function(event) { event.target.setVolume(35); } }
             });
         }
 
@@ -230,7 +219,6 @@
             let musicBtn = document.getElementById("musicBtn");
             let musicIcon = document.getElementById("musicIcon");
             let state = player.getPlayerState();
-
             if (state == YT.PlayerState.PAUSED || state == YT.PlayerState.UNSTARTED || state == -1) {
                 player.playVideo();
                 musicIcon.setAttribute("data-lucide", "volume-2");
@@ -245,75 +233,82 @@
             lucide.createIcons();
         }
 
-        // Data & UI Logic
         const pilarData = {
             1: {
                 nama: "BATAS",
                 label: "Nomaden Gear",
                 spirit: "Ketahanan di titik terjauh.",
                 sanad: [
-                    { penulis: "Agustinus Wibowo", detail: "Pionir travelog filosofis Indonesia. Penulis yang melampaui deskripsi fisik menuju batas psikologis." },
-                    { penulis: "Hermann Hesse", detail: "Maestro Nobel Sastra 1946. Perajut harmoni logika Barat dan spiritualitas Timur." }
+                    { penulis: "Agustinus Wibowo", detail: "Lahir di Lumajang, ia adalah travelog yang mengubah peta fisik menjadi peta batin. Karyanya 'Titik Nol' diakui sebagai pionir sastra perjalanan memoar di Indonesia, membedah konflik identitas dan batas-batas kemanusiaan di Asia Tengah." },
+                    { penulis: "Hermann Hesse", detail: "Sastrawan Jerman-Swiss pemenang Nobel 1946. Melalui Siddhartha, ia mengajarkan bahwa kebenaran tidak bisa diajarkan melalui doktrin, melainkan harus dialami sendiri melalui perjalanan panjang mencari diri." }
                 ],
                 resensi: [
-                    { judul: "Titik Nol", harga: "Rp124.000", isi: "Dekonstruksi jujur atas konsep 'tujuan'. Menemukan rumah di titik paling asing." },
-                    { judul: "Siddhartha", harga: "Rp60.000", isi: "Alegori pencerahan melalui tiga pusaka batin: Berpikir, Menunggu, dan Berpuasa." }
+                    { judul: "Titik Nol", harga: "Rp124.000", isi: "Sebuah perjalanan pulang yang dilakukan melalui rute paling jauh. Menemukan bahwa batas negara hanyalah garis di atas kertas, sementara batas asli ada dalam ketakutan kita sendiri." },
+                    { judul: "Siddhartha", harga: "Rp60.000", isi: "Kisah seorang Brahmana yang melepaskan segalanya demi pencerahan. Buku ini adalah panduan bagi siapa saja yang merasa terjebak dalam rutinitas tanpa makna." }
                 ],
                 jasad: "Daypack Naturehike 22L & Multi Tool VICTORINOX Spartan 91mm.",
-                bonus: "PDF Peta Navigasi Batin di Wilayah Asing",
+                bonus: "PDF Peta Navigasi Batin",
+                bonusDetail: "E-book panduan praktis manajemen ketakutan di wilayah baru dan daftar inventaris esensial untuk pengembaraan minimalis.",
                 hargaAksara: 195000,
-                hargaLengkap: 625000
+                hargaLengkap: 625000,
+                namaLengkap: "BATAS - PRASANTI KIT"
             },
             2: {
                 nama: "RISET",
                 label: "Narasi Pengembara",
                 spirit: "Menanam legasi melalui tulisan.",
                 sanad: [
-                    { penulis: "Yuval Noah Harari", detail: "Intelektual pembedah mitos global. Melihat kemanusiaan sebagai kumpulan narasi fiksi." },
-                    { penulis: "Haruki Murakami", detail: "Maestro realisme magis. Menjahit dunia nyata dengan magis bawah sadar." }
+                    { penulis: "Yuval Noah Harari", detail: "Sejarawan Israel dan profesor di Universitas Ibrani Yerusalem. Ia dikenal luas melalui 'Sapiens', membedah bagaimana narasi fiksi kolektif (uang, agama, bangsa) memungkinkan manusia bekerja sama dalam skala besar." },
+                    { penulis: "Haruki Murakami", detail: "Novelis kontemporer Jepang yang paling berpengaruh secara global. Gaya realismenya yang magis sering mengeksplorasi keterasingan dan bawah sadar manusia urban modern." }
                 ],
                 resensi: [
-                    { judul: "21 Lessons", harga: "Rp294.500", isi: "Benteng kemanusiaan era post-truth. Menjaga fokus adalah bentuk pemberontakan." },
-                    { judul: "Norwegian Wood", harga: "Rp82.500", isi: "Ode untuk kehilangan. Memahat duka menjadi detail sensorik yang hidup." }
+                    { judul: "21 Lessons for the 21st Century", harga: "Rp294.500", isi: "Analisis tajam mengenai tantangan mendesak manusia saat ini: algoritma, krisis ekologi, dan hilangnya makna dalam banjir informasi." },
+                    { judul: "Norwegian Wood", harga: "Rp82.500", isi: "Sebuah riset emosional tentang kerinduan dan kematian. Murakami mengajarkan cara mencatat detail memori dengan sangat presisi hingga terasa nyata." }
                 ],
                 jasad: "Ulanzi WM-10 Wireless Mic, Powerbank Anker 10k, & Journal.",
-                bonus: "PDF Arsitektur Narasi: Mengubah Data Menjadi Rasa",
+                bonus: "PDF Arsitektur Narasi",
+                bonusDetail: "Modul teknis cara menyusun data lapangan menjadi tulisan yang memiliki nyawa (Storytelling Framework).",
                 hargaAksara: 395000,
-                hargaLengkap: 1050000
+                hargaLengkap: 1050000,
+                namaLengkap: "RISET - PRASANTI KIT"
             },
             3: {
                 nama: "JEDA",
                 label: "Selasar Hening",
                 spirit: "Ketenangan radikal.",
                 sanad: [
-                    { penulis: "Viktor Frankl", detail: "Penyintas Auschwitz. Saksi bahwa manusia bertahan karena memiliki makna batin." },
-                    { penulis: "Sapardi Djoko Damono", detail: "Begawan sastra. Pemulia kesederhanaan yang menyentuh relung terdalam." }
+                    { penulis: "Viktor Frankl", detail: "Psikiater Austria dan penyintas kamp konsentrasi Nazi. Pendiri Logotherapy, yang berfokus pada penemuan makna hidup sebagai motivasi utama manusia untuk bertahan dalam kondisi apapun." },
+                    { penulis: "Sapardi Djoko Damono", detail: "Maestro puisi Indonesia. Ia dikenal dengan diksi yang sangat sederhana namun mampu menangkap momen-momen 'jeda' alam yang sering kali luput dari perhatian manusia terburu-buru." }
                 ],
                 resensi: [
-                    { judul: "Man’s Search for Meaning", harga: "Rp67.150", isi: "Kebebasan memilih sikap di tengah penderitaan." },
-                    { judul: "Hujan Bulan Juni", harga: "Rp55.100", isi: "Puncak estetika ketabahan." }
+                    { judul: "Man’s Search for Meaning", harga: "Rp67.150", isi: "Kesaksian bahwa di antara stimulus dan respon, ada sebuah ruang—dan di ruang itulah letak kebebasan kita untuk memilih respon terbaik." },
+                    { judul: "Hujan Bulan Juni", harga: "Rp55.100", isi: "Antologi yang merayakan kesabaran. Mengajarkan kita untuk 'berhenti sejenak' dan membiarkan alam semesta bekerja sesuai waktunya." }
                 ],
                 jasad: "Sajadah Genggam MURI & Macks Silicone Earplugs.",
-                bonus: "PDF Protokol Logotherapy: Makna di Tengah Bising",
+                bonus: "PDF Protokol Logotherapy",
+                bonusDetail: "Panduan meditasi makna untuk menemukan alasan 'mengapa' di tengah tekanan rutinitas yang menyesakkan.",
                 hargaAksara: 135000,
-                hargaLengkap: 295000
+                hargaLengkap: 295000,
+                namaLengkap: "JEDA - PRASANTI KIT"
             },
             4: {
                 nama: "FOKUS",
                 label: "Navigasi Fokus",
                 spirit: "Kehadiran utuh.",
                 sanad: [
-                    { penulis: "Cal Newport", detail: "Pejuang ekonomi perhatian. Deep Work adalah keahlian langka masa depan." },
-                    { penulis: "Haemin Sunim", detail: "Biksu Zen modern. Fokus pada hubungan manusiawi dan perdamaian diri." }
+                    { penulis: "Cal Newport", detail: "Profesor ilmu komputer di Georgetown University yang gencar mengkritik media sosial. Ia mempopulerkan konsep 'Deep Work'—kemampuan untuk fokus tanpa gangguan pada tugas yang sulit secara kognitif." },
+                    { penulis: "Haemin Sunim", detail: "Guru meditasi Zen kelahiran Korea Selatan yang menempuh pendidikan di Harvard dan Princeton. Ia menjembatani kebijaksanaan kuno dengan gaya hidup sibuk manusia modern." }
                 ],
                 resensi: [
-                    { judul: "Digital Minimalism", harga: "Rp118.150", isi: "Merebut kedaulatan waktu dari algoritma." },
-                    { judul: "Slow Down", harga: "Rp106.250", isi: "Menemukan surga di setiap langkah kecil." }
+                    { judul: "Digital Minimalism", harga: "Rp118.150", isi: "Sebuah filosofi penggunaan teknologi di mana kita hanya menggunakan alat digital yang memberikan nilai maksimal, tanpa diperbudak oleh notifikasi." },
+                    { judul: "The Things You Can See Only When You Slow Down", harga: "Rp106.250", isi: "Ketika pikiran kita tenang, dunia pun menjadi tenang. Buku ini adalah panduan untuk mempertahankan fokus batin di tengah badai eksternal." }
                 ],
                 jasad: "Rosca JoraJug Tumbler 1L & Jam Tangan Casio Classic.",
-                bonus: "PDF Manual Fokus Keluarga: Kedaulatan Perhatian",
+                bonus: "PDF Manual Fokus Keluarga",
+                bonusDetail: "Lembar kerja untuk menyaring distraksi digital dan membangun ekosistem perhatian yang sehat di rumah.",
                 hargaAksara: 245000,
-                hargaLengkap: 650000
+                hargaLengkap: 650000,
+                namaLengkap: "FOKUS - PRASANTI KIT"
             }
         };
 
@@ -328,15 +323,25 @@
                     <p class="text-stone-500 uppercase tracking-widest text-xs">${data.label}</p>
                 </div>
                 <div class="space-y-6">
-                    <h4 class="text-xs uppercase tracking-widest text-stone-400 border-b border-white/10 pb-2">Sanad Penulis</h4>
-                    ${data.sanad.map(s => `<div><span class="font-bold text-white block">${s.penulis}</span><p class="text-stone-500 text-sm">${s.detail}</p></div>`).join('')}
+                    <h4 class="text-xs uppercase tracking-widest text-stone-400 border-b border-white/10 pb-2">Sanad Penulis (Detail Faktual)</h4>
+                    ${data.sanad.map(s => `<div><span class="font-bold text-white block underline decoration-stone-700 underline-offset-4 mb-1">${s.penulis}</span><p class="text-stone-500 text-sm leading-relaxed">${s.detail}</p></div>`).join('')}
                 </div>
                 <div class="space-y-6 mt-8">
-                    <h4 class="text-xs uppercase tracking-widest text-stone-400 border-b border-white/10 pb-2">Intisari Aksara</h4>
-                    ${data.resensi.map(r => `<div><div class="flex justify-between items-center"><span class="font-bold text-white">${r.judul}</span><span class="text-xs text-stone-500">${r.harga}</span></div><p class="text-stone-500 text-sm">${r.isi}</p></div>`).join('')}
+                    <h4 class="text-xs uppercase tracking-widest text-stone-400 border-b border-white/10 pb-2">Resensi & Intisari Aksara</h4>
+                    ${data.resensi.map(r => `<div><div class="flex justify-between items-center"><span class="font-bold text-white italic">${r.judul}</span><span class="text-xs text-stone-500">${r.harga}</span></div><p class="text-stone-500 text-sm italic mt-1">${r.isi}</p></div>`).join('')}
                 </div>
-                <div class="p-6 bg-white/5 rounded-2xl mt-8">
-                    <h4 class="text-xs uppercase tracking-widest text-stone-400 mb-2">Isi Jasad (Lengkap)</h4>
+                <div class="p-6 bg-white/5 rounded-2xl mt-8 border border-white/5">
+                    <h4 class="text-xs uppercase tracking-widest text-stone-400 mb-2">Bonus Intelektual (Berlaku Semua Paket)</h4>
+                    <div class="flex gap-3 items-start">
+                        <i data-lucide="file-text" class="text-stone-400 w-5 h-5 shrink-0"></i>
+                        <div>
+                            <span class="text-white text-sm font-bold block">${data.bonus} (PDF)</span>
+                            <p class="text-stone-500 text-xs mt-1">${data.bonusDetail}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 bg-white/5 rounded-2xl mt-4 border border-white/5">
+                    <h4 class="text-xs uppercase tracking-widest text-stone-400 mb-2">Isi Jasad (Paket Lengkap)</h4>
                     <p class="text-stone-400 text-sm italic">${data.jasad}</p>
                 </div>
             `;
@@ -345,6 +350,7 @@
             const btn = document.getElementById(`btn-akad-${id}`);
             btn.classList.remove('btn-disabled');
             btn.disabled = false;
+            lucide.createIcons();
         }
 
         function closeBedah() { document.getElementById('modal-bedah').classList.add('hidden'); }
@@ -353,8 +359,8 @@
             currentPilar = id;
             const data = pilarData[id];
             document.getElementById('akad-options').innerHTML = `
-                <button onclick="kirimWA('Aksara')" class="py-4 border border-white/10 rounded-xl text-xs font-bold hover:bg-white/5">AKAD AKSARA<br><span class="text-stone-500 font-normal">Rp${data.hargaAksara.toLocaleString('id-ID')}</span></button>
-                <button onclick="kirimWA('Lengkap')" class="py-4 glass rounded-xl text-xs font-bold hover:bg-white hover:text-black text-white">AKAD LENGKAP<br><span>Rp${data.hargaLengkap.toLocaleString('id-ID')}</span></button>
+                <button onclick="kirimWA('Aksara')" class="py-4 border border-white/10 rounded-xl text-[10px] font-bold hover:bg-white/5 uppercase tracking-tighter">AKAD AKSARA<br><span class="text-stone-500 font-normal">Rp${data.hargaAksara.toLocaleString('id-ID')}</span></button>
+                <button onclick="kirimWA('Lengkap')" class="py-4 glass rounded-xl text-[10px] font-bold hover:bg-white hover:text-black text-white uppercase tracking-tighter">AKAD ${data.namaLengkap}<br><span>Rp${data.hargaLengkap.toLocaleString('id-ID')}</span></button>
             `;
             document.getElementById('modal-akad').classList.remove('hidden');
         }
@@ -367,7 +373,8 @@
             const niat = document.getElementById('input-niat').value;
             if(!nama || !alamat || !niat) { alert("Lengkapi Dialog Kesadaran, Cak."); return; }
             const data = pilarData[currentPilar];
-            const teks = `Rahayu Kurator Lokagatra, saya ${nama} bermaksud Akad ${data.nama} (${tipe}). Niat: ${niat}. Alamat: ${alamat}. — Prasanti Adikala`;
+            const namaProduk = tipe === 'Lengkap' ? data.namaLengkap : `AKSARA ${data.nama}`;
+            const teks = `Rahayu Kurator Lokagatra, saya ${nama} bermaksud melakukan Akad untuk ${namaProduk}. \n\nBonus PDF: ${data.bonus} telah divalidasi.\n\nNiat: ${niat}\nAlamat: ${alamat}\n\n— Prasanti Adikala`;
             window.open(`https://wa.me/6288989764121?text=${encodeURIComponent(teks)}`, '_blank');
         }
     </script>
