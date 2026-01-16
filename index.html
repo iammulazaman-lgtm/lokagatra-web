@@ -211,7 +211,13 @@
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 height: '0', width: '0', videoId: 'TjviWy5xjVY',
-                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'TjviWy5xjVY', 'controls': 0 },
+                playerVars: { 
+                    'autoplay': 0, 
+                    'loop': 1, 
+                    'playlist': 'TjviWy5xjVY', 
+                    'controls': 0,
+                    'origin': window.location.origin
+                },
                 events: { 'onReady': function(event) { event.target.setVolume(35); } }
             });
         }
@@ -219,8 +225,13 @@
         function toggleMusic() {
             let musicBtn = document.getElementById("musicBtn");
             let musicIcon = document.getElementById("musicIcon");
+            
+            if (!player) return;
+            
             let state = player.getPlayerState();
+            // Jika musik berhenti/belum mulai, jalankan dan pastikan suara terbuka (unMute)
             if (state == YT.PlayerState.PAUSED || state == YT.PlayerState.UNSTARTED || state == -1) {
+                player.unMute(); 
                 player.playVideo();
                 musicIcon.setAttribute("data-lucide", "volume-2");
                 musicBtn.classList.add("animate-pulse", "text-white", "border-stone-500");
