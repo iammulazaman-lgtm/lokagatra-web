@@ -380,6 +380,13 @@
 
         function closeAkad() { document.getElementById('modal-akad').classList.add('hidden'); }
 
+        <body class="overflow-x-hidden">
+
+    <canvas id="starsCanvas" class="fixed top-0 left-0 w-full h-full -z-10 bg-[#050505]"></canvas>
+
+    <script>
+        // (Seluruh pilarData dan fungsi openBedah sampeyan...)
+
         function kirimWA(tipe) {
             const nama = document.getElementById('input-nama').value;
             const alamat = document.getElementById('input-alamat').value;
@@ -390,6 +397,59 @@
             const teks = `Rahayu Kurator Lokagatra, saya ${nama} bermaksud melakukan Akad untuk ${namaProduk}. \n\nBonus PDF: ${data.bonus} telah divalidasi.\n\nNiat: ${niat}\nAlamat: ${alamat}\n\n— Prasanti Adikala`;
             window.open(`https://wa.me/6288989764121?text=${encodeURIComponent(teks)}`, '_blank');
         }
+
+        // 2. RUH BINTANG: Langsung hidup sebelum script ditutup
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        const numStars = 400;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Star {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.z = Math.random() * canvas.width;
+                this.speed = 0.5;
+            }
+            update() {
+                this.z -= this.speed;
+                if (this.z <= 0) {
+                    this.z = canvas.width;
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                }
+            }
+            draw() {
+                let x = (this.x - canvas.width / 2) * (canvas.width / this.z) + canvas.width / 2;
+                let y = (this.y - canvas.height / 2) * (canvas.width / this.z) + canvas.height / 2;
+                let s = 0.8 * (canvas.width / this.z);
+                let opacity = 1 - (this.z / canvas.width);
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.arc(x, y, s, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < numStars; i++) { stars.push(new Star()); }
+
+        function animateStars() {
+            ctx.fillStyle = '#050505';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+            requestAnimationFrame(animateStars);
+        }
+        animateStars();
     </script>
 </body>
 </html>
