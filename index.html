@@ -292,33 +292,45 @@
             player = new YT.Player('player', {
                 height: '0', width: '0', videoId: 'TjviWy5xjVY',
                 playerVars: { 
-                    'autoplay': 1, 'loop': 1, 'playlist': 'TjviWy5xjVY', 
-                    'controls': 0, 'origin': window.location.origin 
+                    'autoplay': 1, 
+                    'loop': 1, 
+                    'playlist': 'TjviWy5xjVY', 
+                    'controls': 0,
+                    'playsinline': 1, // Penting agar HP tidak memaksa fullscreen
+                    'enablejsapi': 1
                 },
                 events: { 
                     'onReady': function(event) { 
-                        event.target.setVolume(0); 
+                        // Syarat mutlak HP: Harus dalam keadaan Mute agar mau jalan otomatis di awal
+                        event.target.mute(); 
                         event.target.playVideo();
                     } 
                 }
             });
         }
-
         // FUNGSI UTAMA UNTUK HP & PC
-        function masukRuang() {
+function masukRuang() {
             const pintu = document.getElementById('pintu-masuk');
-            pintu.classList.add('opacity-0'); 
             
             if (player && typeof player.playVideo === "function") {
-                player.playVideo();
+                // Protokol pemaksaan suara untuk browser HP
                 player.unMute();
-                fadeVolume(35, 3000); // Suara naik halus dari 0 ke 35
+                player.setVolume(0); // Mulai dari nol
+                player.playVideo();
+                
+                // Trigger ganda untuk memastikan sistem HP merespon
+                setTimeout(() => {
+                    player.playVideo();
+                    fadeVolume(35, 3000); // Suara naik perlahan
+                }, 100);
+                
                 updateMusicUI(true);
             }
             
+            pintu.classList.add('opacity-0'); 
             setTimeout(() => { pintu.style.display = 'none'; }, 1000);
         }
-
+        
         function fadeVolume(targetVolume, duration) {
             if (!player || typeof player.getVolume !== "function") return;
             let startVolume = player.getVolume();
